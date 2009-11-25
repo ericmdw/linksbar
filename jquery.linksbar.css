@@ -1,0 +1,70 @@
+/* Extremely basic set of style rules to show how linksbar could be presented.
+ * Hopefully if you use this you'll be able to create a better stylesheet
+ * to make it visually integrate into your site a little better.
+ */
+
+.linksbar_links {
+	float: left;
+}
+
+
+.linksbar_links a {
+	border: 1px solid black;
+	padding: 2px 4px;
+	margin: 0 3px;
+}
+
+.linksbar_buttons {
+	float: right;
+}
+
+.linksbar_buttons a {
+	color: white;
+	background-color: black;
+	padding: 2px 5px;
+	margin: 0 1px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+}
+
+
+/* Styles for the add and remove forms */
+
+#linksbar_prevent_click {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.9;
+}
+
+#linksbar_addlink_form, #linksbar_removelink_form {
+	position: fixed;
+	top: 100px;
+	left: 200px;
+	width: 400px;
+	background-color: white;
+}
+
+#linksbar_addlink_form .field, #linksbar_removelink_form .field {
+	margin: auto;
+}
+
+#linksbar_removelink_form .field {
+	text-align: center;
+}
+
+#linksbar_addlink_form label, #linksbar_removelink_form label {
+	width: 120px;
+	float: left;
+	text-align: right;
+	padding: 0 1em;
+}
+
+#linksbar_addlink_form .buttons, #linksbar_removelink_form .buttons {
+	text-align: center;
+	margin: 0.8em 0;
+}
