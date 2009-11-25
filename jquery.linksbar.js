@@ -34,6 +34,7 @@
 				alert('jQuery Linksbar::debug:: ' + message);
 			}
 		};
+		
 		if(typeof(localStorage)=="undefined") {
 			dbg("ERROR - jQuery Linksbar cannot operate because HTML5 Local Storage is not supported.");
 			return;
@@ -89,10 +90,11 @@
 		var showAddForm = function() {
 			var formHtml = '<div id="linksbar_prevent_click" style="display:none;z-index:100000;"></div>' +
 			               '<div id="linksbar_addlink_form" style="display:none;z-index:100001;"><div class="title">Add Link</div>' +
+			               '<form onsubmit="return false;">' +
 			               '<div class="field"><label for="linkName">Name</label><input type="text" name="linkName"></div>' +
 			               '<div class="field"><label for="linkUrl">URL</label><input type="text" name="linkUrl"></div>' +
-			               '<div class="buttons"><input value="Save" type="button"><input value="Cancel" type="button"></div>'
-			               '</div>';
+			               '<div class="buttons"><input value="Save" type="submit"><input value="Cancel" type="button"></div>'
+			               '</form></div>';
 			
 			if($('#linksbar_addlink_form').length == 0) {
 				$('body').append(formHtml);
@@ -147,10 +149,9 @@
 		};
 		
 		var render = function() {
-			var html = '';
 			var links = getSavedLinks();
 			
-			html += '<div class="linksbar"><div class="linksbar_links">';
+			var html = '<div class="linksbar"><div class="linksbar_links">';
 			for(name in links) {
 				var url = links[name];
 				html += '<a href="' + url + '">' + name + '</a>';
@@ -161,8 +162,6 @@
 			
 			
 			$(target).each(function() {
-				var element = this;
-				
 				$(this).html(html);
 			});
 			
