@@ -109,8 +109,11 @@
 				$('#linksbar_prevent_click').remove();
 			});
 			
+			$('#linksbar_addlink_form input[name="linkUrl"]').val(window.location);
+			
 			$('#linksbar_prevent_click').show();
 			$('#linksbar_addlink_form').show();
+			$('#linksbar_addlink_form input[name="linkName"]').focus();
 		};
 		
 		var showRemoveForm = function() {
