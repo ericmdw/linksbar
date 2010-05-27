@@ -75,16 +75,29 @@
 			return names;
 		};
 		
+		var _hack_ensureStorageUpdateTriggers = function() {
+			window.setTimeout(function() {
+				if(!_hack_storageChangeHandled) {
+					_hack_storageChangeHandled = true;
+					render();
+				}
+			}, 250);
+		};
+		
 		var saveLink = function(name, url) {
 			var links = getSavedLinks();
 			links[name] = url;
+			_hack_storageChangeHandled = false;
 			localStorage.setItem('jquery_linksbar', serialize(links));
+			_hack_ensureStorageUpdateTriggers();
 		};
 		
 		var removeLink = function(name) {
 			var links = getSavedLinks();
 			delete(links[name]);
+			_hack_storageChangeHandled = false;
 			localStorage.setItem('jquery_linksbar', serialize(links));
+			_hack_ensureStorageUpdateTriggers();
 		};
 		
 		var showAddForm = function() {
@@ -180,9 +193,12 @@
 			});
 		};
 		
+		var _hack_storageChangeHandled = true;
+		
 		var setupStorageHandler = function() {
 			var storageHandler = function() {
 				render();
+				_hack_storageChangeHandled = true;
 			};
 			
 			// jQuery bind function doesn't support the storage event yet, have
